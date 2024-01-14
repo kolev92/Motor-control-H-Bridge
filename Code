@@ -1,0 +1,30 @@
+int motorPin1=5;
+int motorPin2=6;
+int potPin=A5;
+int potVal=0;
+
+void setup()
+{
+  pinMode(motorPin1, OUTPUT);
+  pinMode(motorPin2, OUTPUT);
+}
+
+void loop()
+{
+  potVal=analogRead(potPin);
+
+  if (potVal>550){
+   int mapVal=map(potVal,550,1023,0,255);
+   digitalWrite(motorPin1, LOW);
+   analogWrite(motorPin2, mapVal);
+  }
+  else if (potVal<450){
+    int mapVal=map(potVal,450,0,0,255);
+    analogWrite(motorPin1, mapVal);
+   digitalWrite(motorPin2, LOW);
+  }
+  else if (potVal>450 && potVal <550){
+    digitalWrite(motorPin1, LOW);
+   digitalWrite(motorPin2, LOW);
+  }
+}
