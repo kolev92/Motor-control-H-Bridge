@@ -1,0 +1,36 @@
+const int motorPin1=10;
+const int motorPin2=11;
+
+
+void setup()
+{
+pinMode(motorPin1, OUTPUT);
+pinMode(motorPin2, OUTPUT);
+}
+
+void loop()
+{
+  forward(255);
+  delay(1000);
+  stop();
+  delay(1000);
+  backward(255);
+  delay(1000);
+  stop();
+  delay(1000);
+}
+
+void forward(int speed){
+ analogWrite(motorPin1, speed);
+ analogWrite(motorPin2, LOW);
+}
+
+void backward(int speed){
+ analogWrite(motorPin2, speed);
+ analogWrite(motorPin1, LOW);
+}
+
+void stop(){
+ digitalWrite(motorPin1, LOW);
+ digitalWrite(motorPin2, LOW);
+}
